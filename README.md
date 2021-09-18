@@ -1,4 +1,4 @@
-# RealWorld API Spec
+# FoodFabric API Spec
 
 ## Running API tests locally
 
