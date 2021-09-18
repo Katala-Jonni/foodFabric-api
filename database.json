@@ -1,0 +1,108 @@
+{
+  "user": {
+    "email": "jake@jake.jake",
+    "phone": "phone",
+    "name": "jake",
+    "surname": "surname",
+    "secondName": "secondName",
+    "password": "password",
+    "cart": {
+      "items": [
+        {
+          "count": 0,
+          "productId": "productId"
+        }
+      ]
+    },
+    "image": null,
+    "createdAt": "2016-02-18T03:22:56.637Z"
+  },
+  "profile": {
+    "name": "jake",
+    "surname": "surname",
+    "secondName": "secondName",
+    "image": "https://static.productionready.io/images/smiley-cyrus.jpg"
+  },
+  "product": {
+    "slug": "product-slug",
+    "title": "product",
+    "price": "price",
+    "active": true,
+    "categoryId": "categoryId",
+    "composition": {
+      "name": "name"
+    },
+    "weight": 100,
+    "images": [
+      "https://static.productionready.io/images/smiley-cyrus.jpg",
+      "https://static.productionready.io/images/smiley-cyrus.jpg",
+      "https://static.productionready.io/images/smiley-cyrus.jpg"
+    ],
+    "description": "Ever wonder how?",
+    "createdAt": "2016-02-18T03:22:56.637Z",
+    "updatedAt": "2016-02-18T03:48:35.824Z",
+    "favorited": false,
+    "favoritesCount": 0
+  },
+  "category": {
+    "slug": "category-slug",
+    "title": "category",
+    "products": [
+      {
+        "productId": "productId"
+      }
+    ],
+    "active": true,
+    "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+    "createdAt": "2016-02-18T03:22:56.637Z",
+    "updatedAt": "2016-02-18T03:48:35.824Z"
+  },
+  "basket": {
+    "id": "id",
+    "products": [
+      {
+        "productId": "productId",
+        "count": 10
+      }
+    ],
+    "price": 100,
+    "userId": "userId",
+    "discount": 30,
+    "coupon": "coupon",
+    "delivery": true,
+    "createdAt": "2016-02-18T03:22:56.637Z"
+  },
+  "order": {
+    "id": "id",
+    "info": "basketId",
+    "status": "status",
+    "createdAt": "2016-02-18T03:22:56.637Z",
+    "orderNumber": "orderNumber"
+  },
+  "place": {
+    "title:": "place",
+    "address": "address",
+    "info": "info",
+    "email": "email",
+    "phone": "phone",
+    "director": "director",
+    "description": "description",
+    "createdAt": "2016-02-18T03:22:56.637Z"
+  },
+  "feedback": {
+    "name:": "name",
+    "email": "email",
+    "subject": "subject",
+    "message": "message",
+    "agreement": true,
+    "status": "status",
+    "createdAt": "2016-02-18T03:22:56.637Z"
+  },
+  "coupon": {
+    "id": "id",
+    "name:": "name",
+    "expire": "2016-02-18T03:22:56.637Z",
+    "type": "type",
+    "count": 10
+  }
+}
