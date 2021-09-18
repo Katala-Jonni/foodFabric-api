@@ -376,10 +376,9 @@ Example request body:
   }
 }
 ```
+Required fields: `email`, `password`
 
 No authentication required, returns a [User](#users-for-authentication)
-
-Required fields: `email`, `password`
 
 
 ### Registration:
@@ -430,17 +429,10 @@ Example request body:
 }
 ```
 
-Authentication required, returns the [User](#users-for-authentication)
-
 Required fields: `email`, `name`, `surname`, `secondName`, `password`
 Accepted fields: `password`, `image`
 
-### Get Profile
-
-`GET /api/profiles/:userId`
-
-Authentication optional, returns a [Profile](#profile)
-
+Authentication required, returns the [User](#users-for-authentication)
 
 ### List Category
 
@@ -456,7 +448,7 @@ Offset/skip number of products (default is 0):
 
 `?offset=0`
 
-Authentication optional, will return [multiple categories](#multiple-category), ordered by most recent first
+No authentication required,, will return [multiple categories](#multiple-category), ordered by most recent first
 
 
 ### Get Category
@@ -480,7 +472,7 @@ Example request body:
 }
 ```
 
-Authentication required, will return an [Category](#single-category)
+Authentication required with `ADMIN` role, will return an [Category](#single-category)
 
 Required fields: `title`; 
 
@@ -489,7 +481,7 @@ The `title` is unique;
 Optional fields: `images`;
 
 
-### Update Product
+### Update Category
 
 `PUT /api/products/:slug`
 
@@ -505,23 +497,23 @@ Example request body:
 }
 ```
 
-Authentication required, returns the updated [Category](#single-category)
-
-Required fields: `title`;
-
-Optional fields: `images`, `active`;
+Required fields: `title`
+Optional fields: `images`, `active`
 
 The `slug` also gets updated when the `title` is changed;
 The `title` is unique;
+
+Authentication required with `ADMIN` role, returns the updated [Category](#single-category)
 
 
 ### Delete Category
 
 `DELETE /api/category/:slug`
 
-Authentication required
-
 The Category can't deleted, if Category.products has any product;
+
+Authentication required with `ADMIN` role
+
 
 ### List Products
 
@@ -578,11 +570,11 @@ Example request body:
 }
 ```
 
-Authentication required, will return an [Product](#single-product)
-
 Required fields: `title`, `description`, `price`, `categoryId`, `composition`, `weight`
 
 Optional fields: `images` as an array of Strings
+
+Authentication required with `ADMIN` role, will return an [Product](#single-product)
 
 
 ### Update Product
@@ -611,13 +603,13 @@ Example request body:
 }
 ```
 
-Authentication required, returns the updated [Product](#single-product)
-
 Required fields: `title`, `description`, `price`, `categoryId`, `composition`, `weight`
 
 Optional fields: `images` as an array of Strings
 
 The `slug` also gets updated when the `title` is changed
+
+Authentication required with `ADMIN` role, returns the updated [Product](#single-product)
 
 
 ### Delete Product
@@ -630,19 +622,17 @@ Authentication required
 
 `POST /api/products/:slug/favorite`
 
-Authentication required, returns the [Product](#single-product)
-
 No additional parameters required
 
+Authentication required, returns the [Product](#single-product)
 
 ### Unfavorite Product
 
 `DELETE /api/products/:slug/favorite`
 
-Authentication required, returns the [Product](#single-product)
-
 No additional parameters required
 
+Authentication required, returns the [Product](#single-product)
 
 ### Get Basket
 
@@ -671,12 +661,11 @@ Example request body:
 }
 ```
 
+Required fields: `products`, `delivery`
+
+Optional fields: `coupon`
+
 Authentication optional, will return an [Basket](#basket)
-
-Required fields: `products`, `delivery`;
-
-Optional fields: `coupon`;
-
 
 ### Update Basket
 
@@ -699,12 +688,11 @@ Example request body:
 }
 ```
 
+Required fields: `products`, `delivery`
+
+Optional fields: `coupon`
+
 Authentication optional, will return an [Basket](#basket)
-
-Required fields: `products`, `delivery`;
-
-Optional fields: `coupon`;
-
 
 ### Delete Basket
 
@@ -713,13 +701,11 @@ Optional fields: `coupon`;
 Authentication optional
 
 
-
-
 ### Get Order
 
 `GET /api/:orderId`
 
-Authentication required with `ADMIN or authentication USER` role, will return [Order](#order)
+Authentication required, will return [Order](#order)
 
 ### Create Order
 
@@ -741,9 +727,9 @@ Example request body:
 }
 ```
 
-Authentication required with `ADMIN` role, will return an [Order](#order)
-
 Required fields: `status`
+
+Authentication required with `ADMIN` role, will return an [Order](#order)
 
 
 ### Delete Order
@@ -757,7 +743,7 @@ Authentication required with `ADMIN`
 
 `GET /api/:placeId`
 
-Authentication required with `ADMIN` role, will return [Place](#place)
+No authentication required, will return [Place](#place)
 
 ### Create Place
 
@@ -813,7 +799,6 @@ Authentication required with `ADMIN` role, will return an [Place](#place)
 `DELETE /api/placeId`
 
 Authentication required with `ADMIN` role, will return an [Place](#place)
-
 
 
 ### Get Feedback
@@ -885,9 +870,6 @@ Offset/skip number of products (default is 0):
 Authentication required with `ADMIN` role, will return [Feedback](#multiple-feedback), ordered by most recent first
 
 
-
-
-
 ### Get Coupon
 
 `GET /api/:couponId`
@@ -936,11 +918,12 @@ Required fields: `name`, `expire`, `type`, `count`
 
 Authentication required with `ADMIN` role, will return an [Coupon](#coupon)
 
+
 ### List Coupon
 
 `GET /api/coupon`
 
-Returns most recent products globally by default, provide  query parameter to filter results
+Returns most recent products globally by default, provide query parameter to filter results
 
 Query Parameters:
 
