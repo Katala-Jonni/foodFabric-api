@@ -14,45 +14,57 @@ If the backend is about to run on a different host/port than the frontend, make 
 
 ### Authentication Header:
 
-`Authorization: Token jwt.token.here`
+`Authorization: Bearer jwt.token.here`
 
 ## JSON Objects returned by API:
 
 Make sure the right content type like `Content-Type: application/json; charset=utf-8` is correctly returned.
 
-### Users (for authentication)
+### Users (for Registration)
 
 ```JSON
 {
   "user": {
-    "email": "jake@jake.jake",
-    "phone": "phone",
-    "name": "jake",
+     "_id": "61477a5c13782c2ea6e9e488",
+     "image": null,
+     "secondName": "secondname",
+     "surname": "surname",
+     "name": "jake"
+    }
+}
+```
+
+### User (for login)
+
+```JSON
+{
+  "user": {
+    "_id": "61477a5c13782c2ea6e9e488",
+    "createdAt": "2021-09-19T17:58:13.213Z",
+    "image": null,
+    "secondName": "secondname",
     "surname": "surname",
-    "secondName": "secondName",
-    "password": "password",
-    "cart": {
-      "items": [
-        {
-          "count":  0,
-          "productId": "productId"
-        }
-      ]
-    },
-    "image": null
+    "name": "jake",
+    "phone": "phone",
+    "email": "jake@jake.jake",
+    "token": "Bearer jwt.token"
   }
 }
 ```
 
-### Profile
+### User (for current)
 
 ```JSON
 {
-  "profile": {
-     "name": "jake",
-     "surname": "surname",
-     "secondName": "secondName",
-     "image": "https://static.productionready.io/images/smiley-cyrus.jpg"
+  "user": {
+    "id": "61477a5c13782c2ea6e9e488",
+    "createdAt": "2021-09-19T17:58:13.213Z",
+    "image": null,
+    "secondName": "secondname",
+    "surname": "surname",
+    "name": "jake",
+    "phone": "phone",
+    "email": "jake@jake.jake"
   }
 }
 ```
@@ -370,15 +382,13 @@ If a request fails any validations, expect a 422 and errors in the following for
 Example request body:
 ```JSON
 {
-  "user":{
     "email": "jake@jake.jake",
     "password": "jakejake"
-  }
 }
 ```
 Required fields: `email`, `password`
 
-No authentication required, returns a [User](#users-for-authentication)
+No authentication required, returns a [User](#user-for-login)
 
 
 ### Registration:
@@ -393,21 +403,22 @@ Example request body:
     "name": "jake",
     "surname": "surname",
     "secondName": "secondName",
-    "password": "password"
+    "password": "password",
+    "passwordConfirm": "password",
+    "phone": "phone"
   }
 }
 ```
 
-No authentication required, returns a [User](#users-for-authentication)
-
-Required fields: `email`, `name`, `surname`, `password`
+No authentication required, returns a [CurrentUser](#users-for-registration)
+Required fields: `email`, `name`, `surname`, `password`, `passwordConfirm`
 
 
 ### Get Current User
 
 `GET /api/user`
 
-Authentication required, returns a [User](#users-for-authentication) that's the current user
+Authentication required, returns a [User](#user-for-current) that's the current user
 
 
 ### Update User
@@ -418,21 +429,22 @@ Example request body:
 ```JSON
 {
   "user":{
-       "email": "jake@jake.jake",
-       "phone": "phone",
-       "name": "jake",
-       "surname": "surname",
-       "secondName": "secondName",
-       "password": "password",
-        "image": "https://i.stack.imgur.com/xHWG8.jpg"
+    "email": "jake@jake.jake",
+    "phone": "phone",
+    "name": "jake",
+    "surname": "surname",
+    "secondName": "secondName",
+    "password": "password",
+    "passwordConfirm": "password",
+    "image": "https://i.stack.imgur.com/xHWG8.jpg"
   }
 }
 ```
 
-Required fields: `email`, `name`, `surname`, `secondName`, `password`
-Accepted fields: `password`, `image`
+Required fields: `email`, `name`, `surname`, `secondName`
+Accepted fields: `passwordConfirm`, `password`, `image`
 
-Authentication required, returns the [User](#users-for-authentication)
+Authentication required, returns the [User](#user-for-current)
 
 ### List Category
 
@@ -483,7 +495,7 @@ Optional fields: `images`;
 
 ### Update Category
 
-`PUT /api/products/:slug`
+`PUT /api/category/:slug`
 
 Example request body:
 
@@ -513,6 +525,8 @@ Authentication required with `ADMIN` role, returns the updated [Category](#singl
 The Category can't deleted, if Category.products has any product;
 
 Authentication required with `ADMIN` role
+
+Return [multiple categories](#multiple-category)
 
 
 ### List Products

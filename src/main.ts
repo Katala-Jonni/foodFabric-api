@@ -1,3 +1,6 @@
+if (!process.env.IS_TS_NODE) {
+  require('module-alias/register');
+}
 import * as doteenv from 'dotenv';
 
 doteenv.config();
