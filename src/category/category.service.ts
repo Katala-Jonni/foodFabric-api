@@ -97,7 +97,7 @@ export class CategoryService {
   }
 
   buildCategoriesResponse(categories: Category[]): CategoriesResponseInterface {
-    return { categories };
+    return { categories, categoriesCount: categories.length };
   }
 
   buildCategoryResponse(category: Category): CategoryResponseInterface {

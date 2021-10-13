@@ -79,9 +79,7 @@ Make sure the right content type like `Content-Type: application/json; charset=u
      "price": "price",
      "active": true,
      "categoryId": "categoryId",
-     "composition": {
-       "name": "name"
-     },
+     "composition": "composition",
      "weight": 100,
      "images": [
        "https://static.productionready.io/images/smiley-cyrus.jpg",
@@ -90,7 +88,6 @@ Make sure the right content type like `Content-Type: application/json; charset=u
      ],
      "description": "Ever wonder how?",
      "createdAt": "2016-02-18T03:22:56.637Z",
-     "updatedAt": "2016-02-18T03:48:35.824Z",
      "favorited": false,
      "favoritesCount": 0
    }
@@ -103,44 +100,38 @@ Make sure the right content type like `Content-Type: application/json; charset=u
 {
   "products":[{
    "slug": "how-to-train-your-dragon",
-    "title": "How to train your dragon",
-    "price": "price",
-    "active": true,
-    "categoryId": "categoryId",
-    "composition": {
-      "name": "name"
-    },
-    "weight": 100,
-    "images": [
-      "https://static.productionready.io/images/smiley-cyrus.jpg",
-      "https://static.productionready.io/images/smiley-cyrus.jpg",
-      "https://static.productionready.io/images/smiley-cyrus.jpg"
-    ],
-    "description": "Ever wonder how?",
-    "createdAt": "2016-02-18T03:22:56.637Z",
-    "updatedAt": "2016-02-18T03:48:35.824Z",
-    "favorited": false,
-    "favoritesCount": 0
+        "title": "How to train your dragon",
+        "price": "price",
+        "active": true,
+        "categoryId": "categoryId",
+        "composition": "composition",
+        "weight": 100,
+        "images": [
+          "https://static.productionready.io/images/smiley-cyrus.jpg",
+          "https://static.productionready.io/images/smiley-cyrus.jpg",
+          "https://static.productionready.io/images/smiley-cyrus.jpg"
+        ],
+        "description": "Ever wonder how?",
+        "createdAt": "2016-02-18T03:22:56.637Z",
+        "favorited": false,
+        "favoritesCount": 0
   }, {
     "slug": "how-to-train-your-dragon",
-     "title": "How to train your dragon",
-     "price": "price",
-     "active": true,
-     "categoryId": "categoryId",
-     "composition": {
-       "name": "name"
-     },
-     "weight": 100,
-     "images": [
-       "https://static.productionready.io/images/smiley-cyrus.jpg",
-       "https://static.productionready.io/images/smiley-cyrus.jpg",
-       "https://static.productionready.io/images/smiley-cyrus.jpg"
-     ],
-     "description": "Ever wonder how?",
-     "createdAt": "2016-02-18T03:22:56.637Z",
-     "updatedAt": "2016-02-18T03:48:35.824Z",
-     "favorited": false,
-     "favoritesCount": 0
+         "title": "How to train your dragon",
+         "price": "price",
+         "active": true,
+         "categoryId": "categoryId",
+         "composition": "composition",
+         "weight": 100,
+         "images": [
+           "https://static.productionready.io/images/smiley-cyrus.jpg",
+           "https://static.productionready.io/images/smiley-cyrus.jpg",
+           "https://static.productionready.io/images/smiley-cyrus.jpg"
+         ],
+         "description": "Ever wonder how?",
+         "createdAt": "2016-02-18T03:22:56.637Z",
+         "favorited": false,
+         "favoritesCount": 0
   }],
   "productsCount": 2
 }
@@ -567,24 +558,23 @@ Example request body:
 ```JSON
 {
   "product": {
-       "title": "How to train your dragon",
-        "price": "price",
-        "categoryId": "categoryId",
-        "composition": {
-          "name": "name"
-        },
-        "weight": 100,
-        "images": [
-          "https://static.productionready.io/images/smiley-cyrus.jpg",
-          "https://static.productionready.io/images/smiley-cyrus.jpg",
-          "https://static.productionready.io/images/smiley-cyrus.jpg"
-        ],
-        "description": "Ever wonder how?"
+    "title": "product",
+    "price": "price",
+    "categoryId": "categoryId",
+    "composition": "composition",
+    "active": true,
+    "weight": 100,
+    "images": [
+      "https://static.productionready.io/images/smiley-cyrus.jpg",
+      "https://static.productionready.io/images/smiley-cyrus.jpg",
+      "https://static.productionready.io/images/smiley-cyrus.jpg"
+    ],
+    "description": "Ever wonder how?"
   }
 }
 ```
 
-Required fields: `title`, `description`, `price`, `categoryId`, `composition`, `weight`
+Required fields: `title`, `price`, `categoryId`, `composition`, `active`, `weight`, `description`, 
 
 Optional fields: `images` as an array of Strings
 

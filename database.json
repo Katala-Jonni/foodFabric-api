@@ -18,9 +18,7 @@
     "price": "price",
     "active": true,
     "categoryId": "categoryId",
-    "composition": {
-      "name": "name"
-    },
+    "composition": "composition",
     "weight": 100,
     "images": [
       "https://static.productionready.io/images/smiley-cyrus.jpg",
@@ -29,7 +27,6 @@
     ],
     "description": "Ever wonder how?",
     "createdAt": "2016-02-18T03:22:56.637Z",
-    "updatedAt": "2016-02-18T03:48:35.824Z",
     "favorited": false,
     "favoritesCount": 0
   },
@@ -43,8 +40,7 @@
     ],
     "active": true,
     "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
-    "createdAt": "2016-02-18T03:22:56.637Z",
-    "updatedAt": "2016-02-18T03:48:35.824Z"
+    "createdAt": "2016-02-18T03:22:56.637Z"
   },
   "basket": {
     "id": "id",
