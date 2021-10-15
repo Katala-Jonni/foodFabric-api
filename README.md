@@ -14,45 +14,57 @@ If the backend is about to run on a different host/port than the frontend, make 
 
 ### Authentication Header:
 
-`Authorization: Token jwt.token.here`
+`Authorization: Bearer jwt.token.here`
 
 ## JSON Objects returned by API:
 
 Make sure the right content type like `Content-Type: application/json; charset=utf-8` is correctly returned.
 
-### Users (for authentication)
+### Users (for Registration)
 
 ```JSON
 {
   "user": {
-    "email": "jake@jake.jake",
-    "phone": "phone",
-    "name": "jake",
+     "_id": "61477a5c13782c2ea6e9e488",
+     "image": null,
+     "secondName": "secondname",
+     "surname": "surname",
+     "name": "jake"
+    }
+}
+```
+
+### User (for login)
+
+```JSON
+{
+  "user": {
+    "_id": "61477a5c13782c2ea6e9e488",
+    "createdAt": "2021-09-19T17:58:13.213Z",
+    "image": null,
+    "secondName": "secondname",
     "surname": "surname",
-    "secondName": "secondName",
-    "password": "password",
-    "cart": {
-      "items": [
-        {
-          "count":  0,
-          "productId": "productId"
-        }
-      ]
-    },
-    "image": null
+    "name": "jake",
+    "phone": "phone",
+    "email": "jake@jake.jake",
+    "token": "Bearer jwt.token"
   }
 }
 ```
 
-### Profile
+### User (for current)
 
 ```JSON
 {
-  "profile": {
-     "name": "jake",
-     "surname": "surname",
-     "secondName": "secondName",
-     "image": "https://static.productionready.io/images/smiley-cyrus.jpg"
+  "user": {
+    "id": "61477a5c13782c2ea6e9e488",
+    "createdAt": "2021-09-19T17:58:13.213Z",
+    "image": null,
+    "secondName": "secondname",
+    "surname": "surname",
+    "name": "jake",
+    "phone": "phone",
+    "email": "jake@jake.jake"
   }
 }
 ```
@@ -67,9 +79,7 @@ Make sure the right content type like `Content-Type: application/json; charset=u
      "price": "price",
      "active": true,
      "categoryId": "categoryId",
-     "composition": {
-       "name": "name"
-     },
+     "composition": "composition",
      "weight": 100,
      "images": [
        "https://static.productionready.io/images/smiley-cyrus.jpg",
@@ -78,7 +88,6 @@ Make sure the right content type like `Content-Type: application/json; charset=u
      ],
      "description": "Ever wonder how?",
      "createdAt": "2016-02-18T03:22:56.637Z",
-     "updatedAt": "2016-02-18T03:48:35.824Z",
      "favorited": false,
      "favoritesCount": 0
    }
@@ -91,44 +100,38 @@ Make sure the right content type like `Content-Type: application/json; charset=u
 {
   "products":[{
    "slug": "how-to-train-your-dragon",
-    "title": "How to train your dragon",
-    "price": "price",
-    "active": true,
-    "categoryId": "categoryId",
-    "composition": {
-      "name": "name"
-    },
-    "weight": 100,
-    "images": [
-      "https://static.productionready.io/images/smiley-cyrus.jpg",
-      "https://static.productionready.io/images/smiley-cyrus.jpg",
-      "https://static.productionready.io/images/smiley-cyrus.jpg"
-    ],
-    "description": "Ever wonder how?",
-    "createdAt": "2016-02-18T03:22:56.637Z",
-    "updatedAt": "2016-02-18T03:48:35.824Z",
-    "favorited": false,
-    "favoritesCount": 0
+        "title": "How to train your dragon",
+        "price": "price",
+        "active": true,
+        "categoryId": "categoryId",
+        "composition": "composition",
+        "weight": 100,
+        "images": [
+          "https://static.productionready.io/images/smiley-cyrus.jpg",
+          "https://static.productionready.io/images/smiley-cyrus.jpg",
+          "https://static.productionready.io/images/smiley-cyrus.jpg"
+        ],
+        "description": "Ever wonder how?",
+        "createdAt": "2016-02-18T03:22:56.637Z",
+        "favorited": false,
+        "favoritesCount": 0
   }, {
     "slug": "how-to-train-your-dragon",
-     "title": "How to train your dragon",
-     "price": "price",
-     "active": true,
-     "categoryId": "categoryId",
-     "composition": {
-       "name": "name"
-     },
-     "weight": 100,
-     "images": [
-       "https://static.productionready.io/images/smiley-cyrus.jpg",
-       "https://static.productionready.io/images/smiley-cyrus.jpg",
-       "https://static.productionready.io/images/smiley-cyrus.jpg"
-     ],
-     "description": "Ever wonder how?",
-     "createdAt": "2016-02-18T03:22:56.637Z",
-     "updatedAt": "2016-02-18T03:48:35.824Z",
-     "favorited": false,
-     "favoritesCount": 0
+         "title": "How to train your dragon",
+         "price": "price",
+         "active": true,
+         "categoryId": "categoryId",
+         "composition": "composition",
+         "weight": 100,
+         "images": [
+           "https://static.productionready.io/images/smiley-cyrus.jpg",
+           "https://static.productionready.io/images/smiley-cyrus.jpg",
+           "https://static.productionready.io/images/smiley-cyrus.jpg"
+         ],
+         "description": "Ever wonder how?",
+         "createdAt": "2016-02-18T03:22:56.637Z",
+         "favorited": false,
+         "favoritesCount": 0
   }],
   "productsCount": 2
 }
@@ -249,14 +252,43 @@ Make sure the right content type like `Content-Type: application/json; charset=u
 
 ```JSON
 {
-  "title:": "place",
-     "address": "address",
-     "info": "info",
-     "email": "email",
-     "phone": "phone",
-     "director": "director",
-     "description": "description",
-     "createdAt": "2016-02-18T03:22:56.637Z"
+    "place": {
+        "title:": "place",
+        "address": "address",
+        "info": "info",
+        "email": "email",
+        "phone": "phone",
+        "director": "director",
+        "description": "description",
+        "createdAt": "2016-02-18T03:22:56.637Z"   
+    }
+}
+```
+
+### Multiple Place
+
+```JSON
+{
+  "places":[{
+    "title:": "place",
+    "address": "address",
+    "info": "info",
+    "email": "email",
+    "phone": "phone",
+    "director": "director",
+    "description": "description",
+    "createdAt": "2016-02-18T03:22:56.637Z"
+  }, {
+    "title:": "place",
+    "address": "address",
+    "info": "info",
+    "email": "email",
+    "phone": "phone",
+    "director": "director",
+    "description": "description",
+    "createdAt": "2016-02-18T03:22:56.637Z"
+  }],
+  "placeCount": 2
 }
 ```
 
@@ -370,15 +402,13 @@ If a request fails any validations, expect a 422 and errors in the following for
 Example request body:
 ```JSON
 {
-  "user":{
     "email": "jake@jake.jake",
     "password": "jakejake"
-  }
 }
 ```
 Required fields: `email`, `password`
 
-No authentication required, returns a [User](#users-for-authentication)
+No authentication required, returns a [User](#user-for-login)
 
 
 ### Registration:
@@ -393,21 +423,22 @@ Example request body:
     "name": "jake",
     "surname": "surname",
     "secondName": "secondName",
-    "password": "password"
+    "password": "password",
+    "passwordConfirm": "password",
+    "phone": "phone"
   }
 }
 ```
 
-No authentication required, returns a [User](#users-for-authentication)
-
-Required fields: `email`, `name`, `surname`, `password`
+No authentication required, returns a [CurrentUser](#users-for-registration)
+Required fields: `email`, `name`, `surname`, `password`, `passwordConfirm`
 
 
 ### Get Current User
 
 `GET /api/user`
 
-Authentication required, returns a [User](#users-for-authentication) that's the current user
+Authentication required, returns a [User](#user-for-current) that's the current user
 
 
 ### Update User
@@ -418,21 +449,22 @@ Example request body:
 ```JSON
 {
   "user":{
-       "email": "jake@jake.jake",
-       "phone": "phone",
-       "name": "jake",
-       "surname": "surname",
-       "secondName": "secondName",
-       "password": "password",
-        "image": "https://i.stack.imgur.com/xHWG8.jpg"
+    "email": "jake@jake.jake",
+    "phone": "phone",
+    "name": "jake",
+    "surname": "surname",
+    "secondName": "secondName",
+    "password": "password",
+    "passwordConfirm": "password",
+    "image": "https://i.stack.imgur.com/xHWG8.jpg"
   }
 }
 ```
 
-Required fields: `email`, `name`, `surname`, `secondName`, `password`
-Accepted fields: `password`, `image`
+Required fields: `email`, `name`, `surname`, `secondName`
+Accepted fields: `passwordConfirm`, `password`, `image`
 
-Authentication required, returns the [User](#users-for-authentication)
+Authentication required, returns the [User](#user-for-current)
 
 ### List Category
 
@@ -483,7 +515,7 @@ Optional fields: `images`;
 
 ### Update Category
 
-`PUT /api/products/:slug`
+`PUT /api/category/:slug`
 
 Example request body:
 
@@ -513,6 +545,8 @@ Authentication required with `ADMIN` role, returns the updated [Category](#singl
 The Category can't deleted, if Category.products has any product;
 
 Authentication required with `ADMIN` role
+
+Return [multiple categories](#multiple-category)
 
 
 ### List Products
@@ -553,24 +587,23 @@ Example request body:
 ```JSON
 {
   "product": {
-       "title": "How to train your dragon",
-        "price": "price",
-        "categoryId": "categoryId",
-        "composition": {
-          "name": "name"
-        },
-        "weight": 100,
-        "images": [
-          "https://static.productionready.io/images/smiley-cyrus.jpg",
-          "https://static.productionready.io/images/smiley-cyrus.jpg",
-          "https://static.productionready.io/images/smiley-cyrus.jpg"
-        ],
-        "description": "Ever wonder how?"
+    "title": "product",
+    "price": "price",
+    "categoryId": "categoryId",
+    "composition": "composition",
+    "active": true,
+    "weight": 100,
+    "images": [
+      "https://static.productionready.io/images/smiley-cyrus.jpg",
+      "https://static.productionready.io/images/smiley-cyrus.jpg",
+      "https://static.productionready.io/images/smiley-cyrus.jpg"
+    ],
+    "description": "Ever wonder how?"
   }
 }
 ```
 
-Required fields: `title`, `description`, `price`, `categoryId`, `composition`, `weight`
+Required fields: `title`, `price`, `categoryId`, `composition`, `active`, `weight`, `description`, 
 
 Optional fields: `images` as an array of Strings
 
@@ -586,12 +619,11 @@ Example request body:
 ```JSON
 {
   "product": {
-    "title": "How to train your dragon",
+    "title": "product",
     "price": "price",
     "categoryId": "categoryId",
-    "composition": {
-      "name": "name"
-    },
+    "composition": "composition",
+    "active": true,
     "weight": 100,
     "images": [
       "https://static.productionready.io/images/smiley-cyrus.jpg",
@@ -603,7 +635,7 @@ Example request body:
 }
 ```
 
-Required fields: `title`, `description`, `price`, `categoryId`, `composition`, `weight`
+Required fields: `title`, `price`, `categoryId`, `composition`, `active`, `weight`, `description`, 
 
 Optional fields: `images` as an array of Strings
 
@@ -616,7 +648,7 @@ Authentication required with `ADMIN` role, returns the updated [Product](#single
 
 `DELETE /api/products/:slug`
 
-Authentication required
+Authentication required, will return [multiple products](#multiple-products)
 
 ### Favorite Product
 
@@ -738,10 +770,15 @@ Authentication required with `ADMIN` role, will return an [Order](#order)
 
 Authentication required with `ADMIN`
 
+### Get Place
+
+`GET /api/place`
+
+No authentication required, will return [multiple place](#multiple-place)
 
 ### Get Place
 
-`GET /api/:placeId`
+`GET /api/place/:placeId`
 
 No authentication required, will return [Place](#place)
 
@@ -767,18 +804,18 @@ Example request body:
 
 Required fields: `title`, `address`, `info`, `email`, `phone`, `director`, `description`
 
-Authentication required with `ADMIN` role, will return an [Place](#place)
+Authentication required with `ADMIN` role, will return an [multiple place](#multiple-place)
 
 ### Update Place
 
-`PUT /api/placeId`
+`PUT /api/place/:placeId`
 
 Example request body:
 
 ```JSON
 {
   "place": {
-      "title:": "place",
+      "title": "place",
       "address": "address",
       "info": "info",
       "email": "email",
@@ -796,14 +833,14 @@ Authentication required with `ADMIN` role, will return an [Place](#place)
 
 ### Delete Place
 
-`DELETE /api/placeId`
+`DELETE /api/place/:placeId`
 
-Authentication required with `ADMIN` role, will return an [Place](#place)
+Authentication required with `ADMIN` role, will return an [multiple place](#multiple-place)
 
 
 ### Get Feedback
 
-`GET /api/feedbackId`
+`GET /api/:feedbackId`
 
 Authentication required with `ADMIN` role, will return [Feedback](#feedback)
 
