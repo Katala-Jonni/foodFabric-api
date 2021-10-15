@@ -19,7 +19,8 @@ export class ProductService {
     @InjectModel(Product.name) private readonly productRepository: Model<ProductDocument>,
     @InjectModel(Category.name) private readonly categoryRepository: Model<CategoryDocument>,
     @InjectConnection() private readonly connection: Connection,
-  ) {}
+  ) {
+  }
 
   async findOne(query: SearchInterface): Promise<Product> {
     return this.productRepository.findOne(query)

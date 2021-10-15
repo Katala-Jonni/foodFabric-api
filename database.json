@@ -65,7 +65,7 @@
     "orderNumber": "orderNumber"
   },
   "place": {
-    "title:": "place",
+    "title": "place",
     "address": "address",
     "info": "info",
     "email": "email",
@@ -84,9 +84,9 @@
     "createdAt": "2016-02-18T03:22:56.637Z"
   },
   "coupon": {
-    "id": "id",
-    "name:": "name",
+    "title:": "title",
     "expire": "2016-02-18T03:22:56.637Z",
+    "createdAt": "2016-02-18T03:22:56.637Z",
     "type": "type",
     "count": 10
   }

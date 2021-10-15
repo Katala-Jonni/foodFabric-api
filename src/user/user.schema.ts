@@ -9,7 +9,7 @@ const getFistUppercase = (v: string): string => {
 
 @Schema()
 export class User {
-  @Prop({ required: true, unique: true, trim: true })
+  @Prop({ type: String, required: true, unique: true, trim: true })
   email: string;
   @Prop({ trim: true, default: null })
   phone: string;

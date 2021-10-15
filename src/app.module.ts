@@ -8,6 +8,7 @@ import { AuthMiddleware } from '@app/common/middlewares/auth.middleware';
 import { AuthModule } from '@app/auth/auth.module';
 import { CategoryModule } from '@app/category/category.module';
 import { ProductModule } from './product/product.module';
+import { PlaceModule } from './place/place.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { ProductModule } from './product/product.module';
     UserModule,
     CategoryModule,
     ProductModule,
+    PlaceModule,
   ],
   controllers: [AppController],
   providers: [AppService],

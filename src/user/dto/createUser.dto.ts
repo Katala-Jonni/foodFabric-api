@@ -21,8 +21,7 @@ export class CreateUserDto {
   readonly email: string;
   @IsOptional()
   @IsString()
-  @MinLength(4)
-  @MaxLength(20)
+  @MinLength(6)
   @IsMobilePhone('ru-RU')
   readonly phone?: string;
   @IsNotEmpty()

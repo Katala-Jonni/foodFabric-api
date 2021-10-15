@@ -53,7 +53,6 @@ export class CategoryController {
   @Delete('category/:slug')
   @UseGuards(JwtAuthGuard)
   @Roles(RolesEnum.admin)
-  @UsePipes(new ValidationPipe())
   async deleteCategory(
     @Param('slug') slug: string,
   ): Promise<CategoriesResponseInterface> {

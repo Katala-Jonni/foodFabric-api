@@ -252,14 +252,43 @@ Make sure the right content type like `Content-Type: application/json; charset=u
 
 ```JSON
 {
-  "title:": "place",
-     "address": "address",
-     "info": "info",
-     "email": "email",
-     "phone": "phone",
-     "director": "director",
-     "description": "description",
-     "createdAt": "2016-02-18T03:22:56.637Z"
+    "place": {
+        "title:": "place",
+        "address": "address",
+        "info": "info",
+        "email": "email",
+        "phone": "phone",
+        "director": "director",
+        "description": "description",
+        "createdAt": "2016-02-18T03:22:56.637Z"   
+    }
+}
+```
+
+### Multiple Place
+
+```JSON
+{
+  "places":[{
+    "title:": "place",
+    "address": "address",
+    "info": "info",
+    "email": "email",
+    "phone": "phone",
+    "director": "director",
+    "description": "description",
+    "createdAt": "2016-02-18T03:22:56.637Z"
+  }, {
+    "title:": "place",
+    "address": "address",
+    "info": "info",
+    "email": "email",
+    "phone": "phone",
+    "director": "director",
+    "description": "description",
+    "createdAt": "2016-02-18T03:22:56.637Z"
+  }],
+  "placeCount": 2
 }
 ```
 
@@ -741,10 +770,15 @@ Authentication required with `ADMIN` role, will return an [Order](#order)
 
 Authentication required with `ADMIN`
 
+### Get Place
+
+`GET /api/place`
+
+No authentication required, will return [multiple place](#multiple-place)
 
 ### Get Place
 
-`GET /api/:placeId`
+`GET /api/place/:placeId`
 
 No authentication required, will return [Place](#place)
 
@@ -770,18 +804,18 @@ Example request body:
 
 Required fields: `title`, `address`, `info`, `email`, `phone`, `director`, `description`
 
-Authentication required with `ADMIN` role, will return an [Place](#place)
+Authentication required with `ADMIN` role, will return an [multiple place](#multiple-place)
 
 ### Update Place
 
-`PUT /api/placeId`
+`PUT /api/place/:placeId`
 
 Example request body:
 
 ```JSON
 {
   "place": {
-      "title:": "place",
+      "title": "place",
       "address": "address",
       "info": "info",
       "email": "email",
@@ -799,14 +833,14 @@ Authentication required with `ADMIN` role, will return an [Place](#place)
 
 ### Delete Place
 
-`DELETE /api/placeId`
+`DELETE /api/place/:placeId`
 
-Authentication required with `ADMIN` role, will return an [Place](#place)
+Authentication required with `ADMIN` role, will return an [multiple place](#multiple-place)
 
 
 ### Get Feedback
 
-`GET /api/feedbackId`
+`GET /api/:feedbackId`
 
 Authentication required with `ADMIN` role, will return [Feedback](#feedback)
 
