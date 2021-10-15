@@ -56,7 +56,8 @@ export class CategoryController {
   @UsePipes(new ValidationPipe())
   async deleteCategory(
     @Param('slug') slug: string,
-  ): Promise<any> {
-    return this.categoryService.deleteCategory();
+  ): Promise<CategoriesResponseInterface> {
+    const categories = await this.categoryService.deleteCategory(slug);
+    return this.categoryService.buildCategoriesResponse(categories);
   }
 }

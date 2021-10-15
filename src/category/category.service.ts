@@ -14,7 +14,8 @@ import { SearchInterface } from '@app/category/types/search.interface';
 
 @Injectable()
 export class CategoryService {
-  constructor(@InjectModel(Category.name) private readonly categoryRepository: Model<CategoryDocument>) {}
+  constructor(@InjectModel(Category.name) private readonly categoryRepository: Model<CategoryDocument>) {
+  }
 
   async findOne(query: SearchInterface): Promise<Category> {
     return this.categoryRepository.findOne(query)
@@ -84,8 +85,17 @@ export class CategoryService {
       .exec();
   }
 
-  async deleteCategory() {
-    return 'delete category';
+  async deleteCategory(slug: string) {
+    const categoryBySlug: Category & { _id?: string } = await this.findOne({ slug });
+    if (!categoryBySlug) {
+      throw new HttpException('Not found', HttpStatus.NOT_FOUND);
+    }
+    if (categoryBySlug.products.length) {
+      const errorMessage = 'У категории есть продукты, чтобы удалить категорию, необходимо удалить продукты или перенести все продукты в другую категорию';
+      throw new HttpException(errorMessage, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+    await this.categoryRepository.findByIdAndDelete(categoryBySlug._id);
+    return this.findAllCategory();
   }
 
   private getSlug(title: string): string {
