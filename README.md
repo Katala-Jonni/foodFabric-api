@@ -590,12 +590,11 @@ Example request body:
 ```JSON
 {
   "product": {
-    "title": "How to train your dragon",
+    "title": "product",
     "price": "price",
     "categoryId": "categoryId",
-    "composition": {
-      "name": "name"
-    },
+    "composition": "composition",
+    "active": true,
     "weight": 100,
     "images": [
       "https://static.productionready.io/images/smiley-cyrus.jpg",
@@ -607,7 +606,7 @@ Example request body:
 }
 ```
 
-Required fields: `title`, `description`, `price`, `categoryId`, `composition`, `weight`
+Required fields: `title`, `price`, `categoryId`, `composition`, `active`, `weight`, `description`, 
 
 Optional fields: `images` as an array of Strings
 
@@ -620,7 +619,7 @@ Authentication required with `ADMIN` role, returns the updated [Product](#single
 
 `DELETE /api/products/:slug`
 
-Authentication required
+Authentication required, will return [multiple products](#multiple-products)
 
 ### Favorite Product
 

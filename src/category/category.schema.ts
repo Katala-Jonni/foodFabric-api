@@ -22,27 +22,30 @@ export class Category {
       type: String,
       required: true,
       unique: true,
+      trim: true,
     },
   )
   slug: string;
-  // @Prop({
-  //   default: [],
-  // })
-  // products: [
-  //   {
-  //     productId: {
-  //       type: MongooseSchema.Types.ObjectId,
-  //       ref: 'Product',
-  //       required: true
-  //     }
-  //   }
-  // ];
+  @Prop({
+    default: null,
+  })
+  products: [
+    {
+      productId: {
+        type: MongooseSchema.Types.ObjectId,
+        ref: 'Product',
+      }
+    }
+  ];
   @Prop({
     type: Boolean,
     default: true,
   })
   active: boolean;
-  @Prop({ default: null })
+  @Prop({
+    type: String,
+    default: null,
+  })
   image: string;
   @Prop({ default: new Date() })
   createdAt: Date;

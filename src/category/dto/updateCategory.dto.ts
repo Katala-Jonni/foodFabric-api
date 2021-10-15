@@ -8,5 +8,5 @@ export class UpdateCategoryDto extends CreateCategoryDto {
   @IsOptional()
   @IsArray()
   @ArrayUnique()
-  readonly products?: [];
+  readonly products?: []
 }
