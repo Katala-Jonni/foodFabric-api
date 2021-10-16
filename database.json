@@ -84,10 +84,11 @@
     "createdAt": "2016-02-18T03:22:56.637Z"
   },
   "coupon": {
-    "title:": "title",
+    "secret": "secret",
     "expire": "2016-02-18T03:22:56.637Z",
     "createdAt": "2016-02-18T03:22:56.637Z",
     "type": "type",
-    "count": 10
+    "count": 10,
+    "active": true
   }
 }

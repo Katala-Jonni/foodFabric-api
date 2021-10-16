@@ -339,11 +339,13 @@ Make sure the right content type like `Content-Type: application/json; charset=u
 ```JSON
 {
   "coupon": {
-      "id": "id",
-      "name:": "name",
-      "expire": "2016-02-18T03:22:56.637Z",
-      "type": "type",
-      "count": 10
+    "id": "id",
+    "secret:": "secret",
+    "expire": "2016-02-18T03:22:56.637Z",
+    "createdAt": "2016-02-18T03:22:56.637Z",
+    "type": "type",
+    "count": 10,
+    "active": true
     }
 }
 ```
@@ -354,17 +356,21 @@ Make sure the right content type like `Content-Type: application/json; charset=u
 ```JSON
 {
   "coupons":[{
-     "id": "id",
-     "name:": "name",
-     "expire": "2016-02-18T03:22:56.637Z",
-     "type": "type",
-     "count": 10
+    "id": "id",
+    "secret:": "secret",
+    "expire": "2016-02-18T03:22:56.637Z",
+    "createdAt": "2016-02-18T03:22:56.637Z",
+    "type": "type",
+    "count": 10,
+    "active": true
   }, {
-     "id": "id",
-     "name:": "name",
-     "expire": "2016-02-18T03:22:56.637Z",
-     "type": "type",
-     "count": 10
+    "id": "id",
+    "secret:": "secret",
+    "expire": "2016-02-18T03:22:56.637Z",
+    "createdAt": "2016-02-18T03:22:56.637Z",
+    "type": "type",
+    "count": 10,
+    "active": true
   }],
   "couponsCount": 2
 }
@@ -391,6 +397,8 @@ If a request fails any validations, expect a 422 and errors in the following for
 403 for Forbidden requests, when a request may be valid but the user doesn't have permissions to perform the action
 
 404 for Not found requests, when a resource can't be found to fulfill the request
+
+400 for Bad Request requests, when a resource unvalidation
 
 
 ## Endpoints:
@@ -909,7 +917,7 @@ Authentication required with `ADMIN` role, will return [Feedback](#multiple-feed
 
 ### Get Coupon
 
-`GET /api/:couponId`
+`GET /api/coupon/:secret`
 
 Authentication optional, will return [Coupon](#coupon)
 
@@ -922,10 +930,11 @@ Example request body:
 ```JSON
 {
   "coupon": {
-      "name:": "name",
-      "expire": "2016-02-18T03:22:56.637Z",
-      "type": "type",
-      "count": 10
+    "secret:": "secret",
+    "expire": "2016-02-18T03:22:56.637Z",
+    "type": "type",
+    "count": 10,
+    "active": true
     }
 }
 ```
@@ -936,17 +945,18 @@ Authentication required with `ADMIN` role, will return an [Coupon](#coupon)
 
 ### Update Coupon
 
-`PUT /api/couponId`
+`PUT /api/coupon/:secret`
 
 Example request body:
 
 ```JSON
 {
   "coupon": {
-    "name:": "name",
-    "expire": "2016-02-18T03:22:56.637Z",
-    "type": "type",
-    "count": 10
+    "secret:": "secret",
+     "expire": "2016-02-18T03:22:56.637Z",
+     "type": "type",
+     "count": 10,
+     "active": true
     }
 }
 ```

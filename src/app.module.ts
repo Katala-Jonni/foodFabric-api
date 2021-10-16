@@ -9,6 +9,7 @@ import { AuthModule } from '@app/auth/auth.module';
 import { CategoryModule } from '@app/category/category.module';
 import { ProductModule } from './product/product.module';
 import { PlaceModule } from './place/place.module';
+import { CouponModule } from './coupon/coupon.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { PlaceModule } from './place/place.module';
     CategoryModule,
     ProductModule,
     PlaceModule,
+    CouponModule,
   ],
   controllers: [AppController],
   providers: [AppService],

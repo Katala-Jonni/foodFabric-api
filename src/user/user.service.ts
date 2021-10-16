@@ -17,23 +17,6 @@ export class UserService {
     @InjectModel(User.name) private readonly UserModel: Model<UserDocument>,
   ) {}
 
-  async createPassword(pass: string): Promise<string> {
-    return await hash(pass, 10);
-  }
-
-  createPayload(
-    createUserDto: CreateUserDto | CreateUserWithAdminDto,
-  ): CreateUserPayloadInterface {
-    return {
-      email: createUserDto.email,
-      name: createUserDto.name,
-      surname: createUserDto.surname,
-      secondName: createUserDto.secondName,
-      password: createUserDto.password,
-      phone: createUserDto.phone,
-    };
-  }
-
   async createUser(createUserDto: CreateUserDto): Promise<User> {
     // await this.UserModel.deleteMany();
     const errorResponse = {
@@ -148,6 +131,23 @@ export class UserService {
 
     updateUserDto.password = await this.createPassword(updateUserDto.password);
     return await this.update(updateUserDto, currentUserId);
+  }
+
+  async createPassword(pass: string): Promise<string> {
+    return await hash(pass, 10);
+  }
+
+  createPayload(
+    createUserDto: CreateUserDto | CreateUserWithAdminDto,
+  ): CreateUserPayloadInterface {
+    return {
+      email: createUserDto.email,
+      name: createUserDto.name,
+      surname: createUserDto.surname,
+      secondName: createUserDto.secondName,
+      password: createUserDto.password,
+      phone: createUserDto.phone,
+    };
   }
 
   buildUserResponse(userSchema: User): UserResponseInterface {
