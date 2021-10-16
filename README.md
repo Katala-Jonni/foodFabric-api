@@ -919,7 +919,7 @@ Authentication required with `ADMIN` role, will return [Feedback](#multiple-feed
 
 `GET /api/coupon/:secret`
 
-Authentication optional, will return [Coupon](#coupon)
+Authentication required with `ADMIN` role, will return an [Coupon](#coupon)
 
 ### Create Coupon
 
@@ -941,7 +941,7 @@ Example request body:
 
 Required fields: `name`, `expire`, `type`, `count`
 
-Authentication required with `ADMIN` role, will return an [Coupon](#coupon)
+Authentication required with `ADMIN` role, will return an [multiple-coupon](#multiple-coupon)
 
 ### Update Coupon
 
@@ -962,6 +962,7 @@ Example request body:
 ```
 
 Required fields: `name`, `expire`, `type`, `count`
+Field type one of `[percent, sum]`
 
 Authentication required with `ADMIN` role, will return an [Coupon](#coupon)
 
@@ -970,16 +971,12 @@ Authentication required with `ADMIN` role, will return an [Coupon](#coupon)
 
 `GET /api/coupon`
 
-Returns most recent products globally by default, provide query parameter to filter results
+Authentication required with `ADMIN` role, will return [multiple-coupon](#multiple-coupon)
 
-Query Parameters:
 
-Limit number of products (default is 20):
+### Delete Coupon
 
-`?limit=20`
+`DELETE /api/place/:secret`
 
-Offset/skip number of products (default is 0):
+Authentication required with `ADMIN` role, will return an [multiple-coupon](#multiple-coupon)
 
-`?offset=0`
-
-Authentication required with `ADMIN` role, will return [Coupon](#multiple-coupon), ordered by most recent first
