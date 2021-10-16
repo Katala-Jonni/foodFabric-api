@@ -376,6 +376,42 @@ Make sure the right content type like `Content-Type: application/json; charset=u
 }
 ```
 
+### Stage
+
+```JSON
+{
+  "stage": {
+      "id": "id",
+      "title": "title",
+      "color": "color",
+      "createdAt": "2016-02-18T03:22:56.637Z",
+      "active": true
+    }
+}
+```
+
+
+### Multiple Stage
+
+```JSON
+{
+  "stages":[{
+    "id": "id",
+    "title": "title",
+    "color": "color",
+    "createdAt": "2016-02-18T03:22:56.637Z",
+    "active": true
+  }, {
+    "id": "id",
+    "title": "title",
+    "color": "color",
+    "createdAt": "2016-02-18T03:22:56.637Z",
+    "active": true
+  }],
+  "stagesCount": 2
+}
+```
+
 ### Errors and Status Codes
 
 If a request fails any validations, expect a 422 and errors in the following format:
@@ -976,7 +1012,70 @@ Authentication required with `ADMIN` role, will return [multiple-coupon](#multip
 
 ### Delete Coupon
 
-`DELETE /api/place/:secret`
+`DELETE /api/place/:stageId`
 
 Authentication required with `ADMIN` role, will return an [multiple-coupon](#multiple-coupon)
+
+
+### Get Stage
+
+`GET /api/stage/:stageId`
+
+Authentication required with `ADMIN` role, will return an [Stage](#stage)
+
+### Create Stage
+
+`POST /api/stage`
+
+Example request body:
+
+```JSON
+{
+  "stage": {
+    "title": "title",
+    "color": "color",
+    "active": true
+  }
+}
+```
+
+Required fields: `title`, `color`, `active`
+Field type one of `[new, read, inwork, rejected, close]`
+
+Authentication required with `ADMIN` role, will return an [multiple-stage](#multiple-stage)
+
+### Update Stage
+
+`PUT /api/stage/:stageId`
+
+Example request body:
+
+```JSON
+{
+  "stage": {
+    "title": "title",
+    "color": "color",
+    "active": true
+  }
+}
+```
+
+Required fields: `title`, `color`, `active`
+Field type one of `[new, read, inwork, rejected, close]`
+
+Authentication required with `ADMIN` role, will return an [Stage](#stage)
+
+
+### List Stage
+
+`GET /api/stage`
+
+Authentication required with `ADMIN` role, will return [multiple-stage](#multiple-stage)
+
+
+### Delete Stage
+
+`DELETE /api/stage/:stageId`
+
+Authentication required with `ADMIN` role, will return an [multiple-stage](#multiple-stage)
 

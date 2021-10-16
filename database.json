@@ -90,5 +90,11 @@
     "type": "type",
     "count": 10,
     "active": true
+  },
+  "stage": {
+    "title": "title",
+    "color": "color",
+    "createdAt": "2016-02-18T03:22:56.637Z",
+    "active": true
   }
 }
