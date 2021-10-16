@@ -10,6 +10,7 @@ import { CategoryModule } from '@app/category/category.module';
 import { ProductModule } from './product/product.module';
 import { PlaceModule } from './place/place.module';
 import { CouponModule } from './coupon/coupon.module';
+import { StageModule } from './stage/stage.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { CouponModule } from './coupon/coupon.module';
     ProductModule,
     PlaceModule,
     CouponModule,
+    StageModule,
   ],
   controllers: [AppController],
   providers: [AppService],

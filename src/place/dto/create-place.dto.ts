@@ -5,33 +5,33 @@ export class CreatePlaceDto {
   @IsString()
   @MinLength(4)
   @MaxLength(50)
-  title: string;
+  readonly title: string;
   @IsNotEmpty()
   @IsString()
   @MinLength(4)
   @MaxLength(150)
-  address: string;
+  readonly address: string;
   @IsNotEmpty()
   @IsString()
   @MinLength(4)
   @MaxLength(150)
-  info: string;
+  readonly info: string;
   @IsNotEmpty()
   @IsEmail()
-  email: string;
+  readonly email: string;
   @IsNotEmpty()
   @IsString()
   @MinLength(6)
   @IsMobilePhone('ru-RU')
-  phone: string;
+  readonly phone: string;
   @IsNotEmpty()
   @IsString()
   @MinLength(4)
   @MaxLength(50)
-  director: string;
+  readonly director: string;
   @IsNotEmpty()
   @IsString()
   @MinLength(4)
   @MaxLength(300)
-  description: string;
+  readonly description: string;
 }

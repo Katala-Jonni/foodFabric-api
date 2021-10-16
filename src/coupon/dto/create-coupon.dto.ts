@@ -16,20 +16,20 @@ export class CreateCouponDto {
   @IsString()
   @MinLength(8)
   @MaxLength(50)
-  secret: string;
+  readonly secret: string;
   @IsNotEmpty()
   @IsDateString({ strict: true })
-  expire: Date;
+  readonly expire: Date;
   @IsNotEmpty()
   @IsString()
   @IsIncludes('type')
-  type: string;
+  readonly type: string;
   @IsNotEmpty()
   @IsInt()
   @IsPositive()
   @Min(0)
-  count: number;
+  readonly count: number;
   @IsNotEmpty()
   @IsBoolean()
-  active: boolean;
+  readonly active: boolean;
 }
