@@ -75,12 +75,12 @@
     "createdAt": "2016-02-18T03:22:56.637Z"
   },
   "feedback": {
-    "name:": "name",
+    "name": "name",
     "email": "email",
     "subject": "subject",
     "message": "message",
     "agreement": true,
-    "status": "status",
+    "stageId": "stageId",
     "createdAt": "2016-02-18T03:22:56.637Z"
   },
   "coupon": {

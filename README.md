@@ -297,13 +297,13 @@ Make sure the right content type like `Content-Type: application/json; charset=u
 ```JSON
 {
   "feedback": {
-      "name:": "name",
-      "email": "email",
-      "subject": "subject",
-      "message": "message",
-      "agreement": true,
-      "status": "status",
-      "createdAt": "2016-02-18T03:22:56.637Z"
+     "name": "name",
+     "email": "email",
+     "subject": "subject",
+     "message": "message",
+     "agreement": true,
+     "stageId": "stageId",
+     "createdAt": "2016-02-18T03:22:56.637Z"
     }
 }
 ```
@@ -314,21 +314,21 @@ Make sure the right content type like `Content-Type: application/json; charset=u
 ```JSON
 {
   "feedback":[{
-    "name:": "name",
-    "email": "email",
-    "subject": "subject",
-    "message": "message",
-    "agreement": true,
-    "status": "status",
-    "createdAt": "2016-02-18T03:22:56.637Z"
+     "name": "name",
+      "email": "email",
+      "subject": "subject",
+      "message": "message",
+      "agreement": true,
+      "stageId": "stageId",
+      "createdAt": "2016-02-18T03:22:56.637Z"
   }, {
-     "name:": "name",
-     "email": "email",
-     "subject": "subject",
-     "message": "message",
-     "agreement": true,
-     "status": "status",
-     "createdAt": "2016-02-18T03:22:56.637Z"
+     "name": "name",
+      "email": "email",
+      "subject": "subject",
+      "message": "message",
+      "agreement": true,
+      "stageId": "stageId",
+      "createdAt": "2016-02-18T03:22:56.637Z"
   }],
   "feedbackCount": 2
 }
@@ -910,35 +910,17 @@ Required fields: `name`, `email`, `subject`, `message`, `agreement`
 
 Authentication optional, will return an [Feedback](#feedback)
 
-### Update Feedback
-
-`PUT /api/feedbackId`
-
-Example request body:
-
-```JSON
-{
-  "feedback": {
-     "status": "status"
-    }
-}
-```
-
-Required fields: `status`
-
-Authentication required with `ADMIN` role, will return an [Feedback](#feedback)
-
 ### List Feedback
 
 `GET /api/feedback`
 
-Returns most recent products globally by default, provide `status` query parameter to filter results
+Returns most recent products globally by default, provide `stageId` query parameter to filter results
 
 Query Parameters:
 
 Filter by status:
 
-`?status=new`
+`?stageId=new`
 
 Limit number of products (default is 20):
 

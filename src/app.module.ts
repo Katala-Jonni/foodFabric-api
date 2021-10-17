@@ -11,6 +11,7 @@ import { ProductModule } from './product/product.module';
 import { PlaceModule } from './place/place.module';
 import { CouponModule } from './coupon/coupon.module';
 import { StageModule } from './stage/stage.module';
+import { FeedbackModule } from './feedback/feedback.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { StageModule } from './stage/stage.module';
     PlaceModule,
     CouponModule,
     StageModule,
+    FeedbackModule,
   ],
   controllers: [AppController],
   providers: [AppService],
