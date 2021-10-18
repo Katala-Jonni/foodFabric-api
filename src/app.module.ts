@@ -12,6 +12,7 @@ import { PlaceModule } from './place/place.module';
 import { CouponModule } from './coupon/coupon.module';
 import { StageModule } from './stage/stage.module';
 import { FeedbackModule } from './feedback/feedback.module';
+import { BasketModule } from './basket/basket.module';
 
 @Module({
   imports: [
@@ -27,15 +28,16 @@ import { FeedbackModule } from './feedback/feedback.module';
     CouponModule,
     StageModule,
     FeedbackModule,
+    BasketModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {
-  // configure(consumer: MiddlewareConsumer) {
-  //   consumer.apply(AuthMiddleware).forRoutes({
-  //     path: '*',
-  //     method: RequestMethod.ALL,
-  //   });
-  // }
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(AuthMiddleware).forRoutes({
+      path: '*',
+      method: RequestMethod.ALL,
+    });
+  }
 }

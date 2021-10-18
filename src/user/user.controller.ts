@@ -54,7 +54,7 @@ export class UserController {
   @UseGuards(LocalAuthGuard)
   @UsePipes(new ValidationPipe())
   async login(
-    @Body('user') loginUserDto: LoginUserDto,
+    @Body() loginUserDto: LoginUserDto,
     @Req() req,
   ): Promise<UserCurrentInterface> {
     const token = this.authService.login(req.user);

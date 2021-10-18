@@ -196,19 +196,19 @@ Make sure the right content type like `Content-Type: application/json; charset=u
 ```JSON
 {
  "basket": {
-     "id": "id",
-     "products": [
-       {
-         "productId": "productId",
-         "count": 10
-       }
-     ],
-     "price": 100,
-     "userId": "userId",
-     "discount": 30,
-     "coupon": "coupon",
-     "delivery": true,
-     "createdAt": "2016-02-18T03:22:56.637Z"
+    "id": "id",
+    "products": [
+      {
+        "productId": "productId",
+        "count": 10
+      }
+    ],
+    "total": 100,
+    "userId": "userId",
+    "discount": 30,
+    "coupon": "couponId",
+    "delivery": false,
+    "createdAt": "2016-02-18T03:22:56.637Z"
    }
 }
 ```
@@ -435,6 +435,8 @@ If a request fails any validations, expect a 422 and errors in the following for
 404 for Not found requests, when a resource can't be found to fulfill the request
 
 400 for Bad Request requests, when a resource unvalidation
+
+500 for Internal Server Error
 
 
 ## Endpoints:

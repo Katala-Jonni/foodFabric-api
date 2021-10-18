@@ -50,11 +50,11 @@
         "count": 10
       }
     ],
-    "price": 100,
+    "total": 100,
     "userId": "userId",
     "discount": 30,
-    "coupon": "coupon",
-    "delivery": true,
+    "coupon": "couponId",
+    "delivery": false,
     "createdAt": "2016-02-18T03:22:56.637Z"
   },
   "order": {

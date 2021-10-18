@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Schema as MongooseSchema } from 'mongoose';
 import { RolesEnum } from '@app/common/enum/roles.emum';
+import { Basket } from '@app/basket/basket.schema';
 
 const getFistUppercase = (v: string): string => {
   const otherText = v.slice(1, v.length);
@@ -38,8 +39,12 @@ export class User {
   password: string;
   @Prop({ default: null })
   image: string;
-  // @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Basket', default: {} })
-  // basket: {};
+  @Prop({
+    type: MongooseSchema.Types.ObjectId,
+    ref: 'Basket',
+    default: null,
+  })
+  basketId: Basket;
   @Prop({ default: new Date() })
   createdAt: Date;
   @Prop({

@@ -1,10 +1,14 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { JwtAuthGuard } from '@app/auth/guards/jwt-auth.guard';
 import { Roles } from '@app/common/metadata/roles.metadata';
-import { RolesEnum } from '@app/common/enum/roles.emum';
+// services
 import { ProductService } from '@app/product/product.service';
+// enum
+import { RolesEnum } from '@app/common/enum/roles.emum';
+// dto
 import { CreateProductDto } from '@app/product/dto/createProduct.dto';
 import { UpdateProductDto } from '@app/product/dto/updateProduct.dto';
+// interfaces
 import { ProductsResponseInterface } from '@app/product/types/productsResponse.interface';
 import { ProductResponseInterface } from '@app/product/types/productResponse.interface';
 
