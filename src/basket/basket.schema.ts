@@ -16,7 +16,12 @@ export class Basket {
   })
   createdAt: Date;
   @Prop({
-    type: [{ count: { type: Number, default: 1, min: 1 }, productId: { type: MongooseSchema.Types.ObjectId } }],
+    type: [
+      {
+        count: { type: Number, default: 1, min: 1 },
+        productId: { type: MongooseSchema.Types.ObjectId, ref: 'Product' },
+      },
+    ],
     default: [],
   })
   products: { count: number, productId: Product }[];

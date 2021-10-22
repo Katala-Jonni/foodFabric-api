@@ -714,7 +714,7 @@ Authentication required, returns the [Product](#single-product)
 
 ### Get Basket
 
-`GET /api/:basketId`
+`GET /api/:localBasketId`
 
 Authentication optional, will return [Basket](#basket)
 
