@@ -59,10 +59,24 @@
   },
   "order": {
     "id": "id",
-    "info": "basketId",
-    "status": "status",
     "createdAt": "2016-02-18T03:22:56.637Z",
-    "orderNumber": "orderNumber"
+    "basket": "basketId",
+    "client": "clientId",
+    "orderNumber": "orderNumber",
+    "deliveryDate": "2016-02-18T03:22:56.637Z",
+    "street": "street",
+    "house": "house",
+    "building": "building",
+    "apartment": 5,
+    "addressComment": "addressComment",
+    "stageId": "stageId",
+    "coupon": "couponId",
+    "guestName": "guestName",
+    "phone": "phone",
+    "causeRejected": "causeRejected",
+    "payType": "payType",
+    "amountMoney": 1000,
+    "wishes": "wishes"
   },
   "place": {
     "title": "place",

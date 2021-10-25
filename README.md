@@ -218,11 +218,25 @@ Make sure the right content type like `Content-Type: application/json; charset=u
 ```JSON
 {
   "order": {
-      "id": "id",
-      "info": "basketId",
-      "status": "status",
-      "createdAt": "2016-02-18T03:22:56.637Z",
-      "orderNumber": "orderNumber"
+    "id": "id",
+    "createdAt": "2016-02-18T03:22:56.637Z",
+    "basket": "basketId",
+    "client": "clientId",
+    "orderNumber": "orderNumber",
+    "deliveryDate": "2016-02-18T03:22:56.637Z",
+    "street": "street",
+    "house": "house",
+    "building": "building",
+    "apartment": 5,
+    "addressComment": "addressComment",
+    "stageId": "stageId",
+    "coupon": "couponId",
+    "guestName": "guestName",
+    "phone": "phone",
+    "causeRejected": "causeRejected",
+    "payType": "payType",
+    "amountMoney": 1000,
+    "wishes": "wishes"
     }
 }
 ```
@@ -232,17 +246,45 @@ Make sure the right content type like `Content-Type: application/json; charset=u
 ```JSON
 {
   "orders":[{
-   "id": "id",
-    "info": "basketId",
-    "status": "status",
+    "id": "id",
     "createdAt": "2016-02-18T03:22:56.637Z",
-    "orderNumber": "orderNumber"
+    "basket": "basketId",
+    "client": "clientId",
+    "orderNumber": "orderNumber",
+    "deliveryDate": "2016-02-18T03:22:56.637Z",
+    "street": "street",
+    "house": "house",
+    "building": "building",
+    "apartment": 5,
+    "addressComment": "addressComment",
+    "stageId": "stageId",
+    "coupon": "couponId",
+    "guestName": "guestName",
+    "phone": "phone",
+    "causeRejected": "causeRejected",
+    "payType": "payType",
+    "amountMoney": 1000,
+    "wishes": "wishes"
   }, {
-   "id": "id",
-   "info": "basketId",
-   "status": "status",
-   "createdAt": "2016-02-18T03:22:56.637Z",
-   "orderNumber": "orderNumber"
+    "id": "id",
+    "createdAt": "2016-02-18T03:22:56.637Z",
+    "basket": "basketId",
+    "client": "clientId",
+    "orderNumber": "orderNumber",
+    "deliveryDate": "2016-02-18T03:22:56.637Z",
+    "street": "street",
+    "house": "house",
+    "building": "building",
+    "apartment": 5,
+    "addressComment": "addressComment",
+    "stageId": "stageId",
+    "coupon": "couponId",
+    "guestName": "guestName",
+    "phone": "phone",
+    "causeRejected": "causeRejected",
+    "payType": "payType",
+    "amountMoney": 1000,
+    "wishes": "wishes"
   }],
   "ordersCount": 2
 }

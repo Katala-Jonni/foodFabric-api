@@ -13,6 +13,7 @@ import { CouponModule } from './coupon/coupon.module';
 import { StageModule } from './stage/stage.module';
 import { FeedbackModule } from './feedback/feedback.module';
 import { BasketModule } from './basket/basket.module';
+import { OrderModule } from './order/order.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { BasketModule } from './basket/basket.module';
     StageModule,
     FeedbackModule,
     BasketModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],

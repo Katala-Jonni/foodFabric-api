@@ -16,5 +16,6 @@ import { Product, ProductSchema } from '@app/product/product.schema';
   ],
   controllers: [BasketController],
   providers: [BasketService],
+  exports: [BasketService]
 })
 export class BasketModule {}

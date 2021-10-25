@@ -12,6 +12,12 @@ import { UpdateBasketDto } from './dto/update-basket.dto';
 // interfaces
 import { BasketResponseInterface } from '@app/basket/types/basketResponse.interface';
 import { UserType } from '@app/user/types/user.type';
+import { OrderDocument } from '@app/order/order.schema';
+
+
+const basketOptions = {
+  isActive: true,
+};
 
 @Injectable()
 export class BasketService {
@@ -22,12 +28,16 @@ export class BasketService {
   ) {
   }
 
-  async create(createBasketDto: CreateBasketDto, user: UserType): Promise<Basket> {
+  async create(createBasketDto: CreateBasketDto, user: UserType = null, order: OrderDocument = null): Promise<Basket> {
     const currentProduct: Product = await this.productRepository.findById(createBasketDto.productId);
     if (!currentProduct) {
       throw new HttpException('product is not found', HttpStatus.NOT_FOUND);
     }
     try {
+      if (order) {
+        const basket: BasketDocument = await this.basketRepository.findById(`${order.basket}`);
+        return this.createBasket(basket, createBasketDto, currentProduct);
+      }
       if (user) {
         const currentUser: UserDocument = await this.userRepository.findById(user._id);
         if (currentUser.basketId) {
@@ -55,8 +65,8 @@ export class BasketService {
   async findBasket(localBasketId: string, user: UserType): Promise<Basket> {
     try {
       return user
-        ? await this.basketRepository.findById(user.basketId)
-        : await this.basketRepository.findOne({ localBasketId });
+        ? await this.basketRepository.findOne({ _id: user.basketId, ...basketOptions })
+        : await this.basketRepository.findOne({ localBasketId, ...basketOptions });
     } catch (e) {
       throw new HttpException('Internal Server Error', HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -69,11 +79,28 @@ export class BasketService {
     user: UserType,
     inc: string,
   ): Promise<Basket> {
-    if (user) {
-      return this.updatePlusMinus({ _id: `${user.basketId}` }, productId, updateBasketDto, inc);
-    } else {
-      return this.updatePlusMinus({ localBasketId: basketId }, productId, updateBasketDto, inc);
+    if (user && !user.basketId) {
+      return null;
     }
+    const param = user ? { _id: `${user.basketId}` } : { localBasketId: basketId };
+    const basket: BasketDocument = await this.searchBasket(param);
+    // if (!basket) {
+    //   throw new HttpException('basket is not found', HttpStatus.NOT_FOUND);
+    // }
+    return this.updatePlusMinus(basket, productId, updateBasketDto, inc);
+    // if (user) {
+    //   const basket: BasketDocument = await this.searchBasket({ _id: `${user.basketId}` });
+    //   if (!basket) {
+    //     return null;
+    //   }
+    //   return this.updatePlusMinus(basket, productId, updateBasketDto, inc);
+    // } else {
+    //   const basket: BasketDocument = await this.searchBasket({ localBasketId: basketId });
+    //   if (!basket) {
+    //     return null;
+    //   }
+    //   return this.updatePlusMinus(basket, productId, updateBasketDto, inc);
+    // }
   }
 
   async removeProduct(basketId: string, productId: string, user: UserType): Promise<Basket> {
@@ -82,7 +109,7 @@ export class BasketService {
     }
     const param = user ? { _id: `${user.basketId}` } : { localBasketId: basketId };
     const basket = await this.deleteProduct(param, productId);
-    if (!basket.products.length) {
+    if (basket && !basket.products.length) {
       user && await this.userRepository.findByIdAndUpdate(user._id, { basketId: null });
       await this.deleteBasket(param);
       return null;
@@ -92,6 +119,10 @@ export class BasketService {
 
   async remove(basketId: string, user: UserType): Promise<null> {
     const param = user ? { _id: `${user.basketId}` } : { localBasketId: basketId };
+    const basket = await this.basketRepository.findOne(param);
+    if (!basket) {
+      throw new HttpException('basket is not found', HttpStatus.NOT_FOUND);
+    }
     if (user && user.basketId) {
       await this.userRepository.findByIdAndUpdate(user._id, { basketId: null });
     }
@@ -137,16 +168,12 @@ export class BasketService {
     return this.basketRepository.findById(`${newBasketUserId._id}`);
   }
 
-  private async updatePlusMinus(
-    param: { _id?: string, localBasketId?: string },
+  async updatePlusMinus(
+    basket: BasketDocument,
     productId: string,
     updateBasketDto: UpdateBasketDto,
     inc: string,
   ): Promise<Basket> {
-    const basket: BasketDocument = await this.searchBasket(param);
-    if (!basket) {
-      return null;
-    }
     const productIdx: number = basket.products.findIndex((p: { count: number, productId: ProductDocument }) => {
       return `${p.productId._id}` === productId;
     });
@@ -168,10 +195,10 @@ export class BasketService {
     return basket;
   }
 
-  private async deleteProduct(param: { _id?: string, localBasketId?: string }, productId): Promise<Basket> {
-    const basket: BasketDocument = await this.searchBasket(param);
+  async deleteProduct(param: { _id?: string, localBasketId?: string }, productId: string, isOrder = false): Promise<Basket> {
+    const basket: BasketDocument = await this.searchBasket(param, isOrder);
     if (!basket) {
-      return null;
+      throw new HttpException('basket is not found', HttpStatus.NOT_FOUND);
     }
     const productIdx: number = basket.products.findIndex((p: { count: number, productId: ProductDocument }) => {
       return `${p.productId._id}` === productId;
@@ -186,14 +213,23 @@ export class BasketService {
   }
 
   private async deleteBasket(param: { _id?: string, localBasketId?: string }): Promise<void> {
-    await this.basketRepository.findOneAndDelete(param);
+    await this.basketRepository.findOneAndDelete({ ...param, ...basketOptions });
   }
 
-  private async searchBasket(param: { _id?: string, localBasketId?: string }): Promise<BasketDocument> {
-    return await this.basketRepository
-      .findOne(param)
-      .populate('products.productId')
-      .exec();
+  async searchBasket(param: { _id?: string, localBasketId?: string }, isOrder = false): Promise<BasketDocument> {
+    const orderEdit = !isOrder ? { ...basketOptions } : {};
+    try {
+      const basket = await this.basketRepository
+        .findOne({ ...param, ...orderEdit })
+        .populate('products.productId')
+        .exec();
+      if (!basket) {
+        throw new Error();
+      }
+      return basket;
+    } catch (e) {
+      throw new HttpException('basket is not found', HttpStatus.NOT_FOUND);
+    }
   }
 
   buildBasketResponse(basket?: Basket): BasketResponseInterface {

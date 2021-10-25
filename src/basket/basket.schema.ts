@@ -31,6 +31,11 @@ export class Basket {
     default: null,
   })
   localBasketId: string;
+  @Prop({
+    type: Boolean,
+    default: true,
+  })
+  isActive: boolean;
 }
 
 export type BasketDocument = Basket & Document;

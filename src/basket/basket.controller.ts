@@ -8,7 +8,8 @@ import { UserType } from '@app/user/types/user.type';
 
 @Controller('api/basket')
 export class BasketController {
-  constructor(private readonly basketService: BasketService) {}
+  constructor(private readonly basketService: BasketService) {
+  }
 
   @Post()
   @UsePipes(new ValidationPipe())
@@ -30,6 +31,7 @@ export class BasketController {
   }
 
   @Put(':basketId/product/:productId')
+  @UsePipes(new ValidationPipe())
   async update(
     @Param('basketId') basketId: string,
     @Param('productId') productId: string,
