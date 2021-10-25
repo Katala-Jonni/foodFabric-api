@@ -84,23 +84,7 @@ export class BasketService {
     }
     const param = user ? { _id: `${user.basketId}` } : { localBasketId: basketId };
     const basket: BasketDocument = await this.searchBasket(param);
-    // if (!basket) {
-    //   throw new HttpException('basket is not found', HttpStatus.NOT_FOUND);
-    // }
     return this.updatePlusMinus(basket, productId, updateBasketDto, inc);
-    // if (user) {
-    //   const basket: BasketDocument = await this.searchBasket({ _id: `${user.basketId}` });
-    //   if (!basket) {
-    //     return null;
-    //   }
-    //   return this.updatePlusMinus(basket, productId, updateBasketDto, inc);
-    // } else {
-    //   const basket: BasketDocument = await this.searchBasket({ localBasketId: basketId });
-    //   if (!basket) {
-    //     return null;
-    //   }
-    //   return this.updatePlusMinus(basket, productId, updateBasketDto, inc);
-    // }
   }
 
   async removeProduct(basketId: string, productId: string, user: UserType): Promise<Basket> {
@@ -195,7 +179,11 @@ export class BasketService {
     return basket;
   }
 
-  async deleteProduct(param: { _id?: string, localBasketId?: string }, productId: string, isOrder = false): Promise<Basket> {
+  async deleteProduct(
+    param: { _id?: string, localBasketId?: string },
+    productId: string,
+    isOrder = false,
+  ): Promise<Basket> {
     const basket: BasketDocument = await this.searchBasket(param, isOrder);
     if (!basket) {
       throw new HttpException('basket is not found', HttpStatus.NOT_FOUND);
@@ -216,7 +204,10 @@ export class BasketService {
     await this.basketRepository.findOneAndDelete({ ...param, ...basketOptions });
   }
 
-  async searchBasket(param: { _id?: string, localBasketId?: string }, isOrder = false): Promise<BasketDocument> {
+  async searchBasket(
+    param: { _id?: string, localBasketId?: string },
+    isOrder = false,
+  ): Promise<BasketDocument> {
     const orderEdit = !isOrder ? { ...basketOptions } : {};
     try {
       const basket = await this.basketRepository
